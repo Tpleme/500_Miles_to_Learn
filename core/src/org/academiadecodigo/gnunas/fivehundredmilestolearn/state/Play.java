@@ -244,7 +244,7 @@ public class Play extends AbstractState {
             dispose();
         }
 
-        if (player.getGas() >= 500) {
+        if (player.getMiles() >= 500) {
             stateManager.setState(new End(stateManager, game, true));
             game.setScreen(stateManager.getState());
             dispose();
