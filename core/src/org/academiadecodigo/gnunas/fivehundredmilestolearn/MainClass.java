@@ -4,12 +4,13 @@ import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import org.academiadecodigo.gnunas.fivehundredmilestolearn.state.AbstractState;
 import org.academiadecodigo.gnunas.fivehundredmilestolearn.state.Play;
 import org.academiadecodigo.gnunas.fivehundredmilestolearn.state.StateList;
 import org.academiadecodigo.gnunas.fivehundredmilestolearn.state.StateManager;
+import org.academiadecodigo.gnunas.fivehundredmilestolearn.state.GameStateManager;
+import org.academiadecodigo.gnunas.fivehundredmilestolearn.state.MenuState;
 
 public class MainClass extends Game {
 
