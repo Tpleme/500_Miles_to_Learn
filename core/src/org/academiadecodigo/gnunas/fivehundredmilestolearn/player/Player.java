@@ -29,10 +29,10 @@ public class Player extends Actor {
     private void move(float delta) {
         sprite.translateY(delta * 200);
 
-        if(Gdx.input.isKeyPressed(Input.Keys.DPAD_LEFT)) {
+        if(Gdx.input.isKeyPressed(Input.Keys.DPAD_LEFT) && sprite.getX() >= 200) {
             sprite.translateX(- delta * speed);
         }
-        if(Gdx.input.isKeyPressed(Input.Keys.DPAD_RIGHT)) {
+        if(Gdx.input.isKeyPressed(Input.Keys.DPAD_RIGHT) && sprite.getX() <= Gdx.graphics.getWidth() - 260) {
             sprite.translateX(delta * speed);
         }
 
