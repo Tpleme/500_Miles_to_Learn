@@ -5,7 +5,6 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import org.academiadecodigo.gnunas.fivehundredmilestolearn.MainClass;
 
 public class End extends AbstractState {
 
@@ -18,8 +17,11 @@ public class End extends AbstractState {
     private Texture lostTexture;
     private Texture car;
 
-    private Texture playButton;
-    private Texture quitButton;
+    private Texture losePlayButton;
+    private Texture loseQuitButton;
+
+    private Texture winPlayButton;
+    private Texture winQuitButton;
 
     private SpriteBatch spriteBatch;
 
@@ -32,8 +34,12 @@ public class End extends AbstractState {
 
     @Override
     public void show() {
-        playButton = new Texture("images/PlayButton.png");
-        quitButton = new Texture("images/MenuButton.png");
+        losePlayButton = new Texture("images/PlayButton.png");
+        loseQuitButton = new Texture("images/MenuButton.png");
+
+        winPlayButton = new Texture("images/PlayButton.png");
+        winQuitButton = new Texture("images/MenuButton.png");
+
         car = new Texture("Car.png");
 
     }
@@ -50,16 +56,20 @@ public class End extends AbstractState {
             spriteBatch.draw(winBackground, 0, 0);
             spriteBatch.draw(winTexture, 130, 20);
 
+            spriteBatch.draw(winPlayButton, 65, 400);
+            spriteBatch.draw(winQuitButton, 550, 400);
+
         } else {
             loseBackground = new Texture("images/untitled5.png");
             lostTexture = new Texture("images/Perdeste.png");
             spriteBatch.draw(loseBackground, 0, 0);
             spriteBatch.draw(lostTexture, 150, 20);
+
+            spriteBatch.draw(losePlayButton, 160, 400);
+            spriteBatch.draw(loseQuitButton, 450, 400);
         }
 
         spriteBatch.draw(car, 360, 140);
-        spriteBatch.draw(playButton, 160, 400);
-        spriteBatch.draw(quitButton, 450, 400);
 
         spriteBatch.end();
     }
