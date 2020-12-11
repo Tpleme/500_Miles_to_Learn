@@ -1,20 +1,32 @@
 package org.academiadecodigo.gnunas.fivehundredmilestolearn;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Vector3;
+import com.badlogic.gdx.scenes.scene2d.Actor;
+
+import java.util.LinkedList;
+import java.util.List;
 
 public class Map {
 
-    private Texture tileTexture;
+    private final Texture[] textures;
+    private final Texture texture;
     private Vector3 position;
 
     public Map(int x, int y) {
-        tileTexture = new Texture("images/untitled1.png");
-        position = new Vector3(x,y,0);
-    }
+        textures = new Texture[]{
+                new Texture("images/untitled1.png"),
+                new Texture("images/untitled2.png"),
+                new Texture("images/untitled3.png"),
+                new Texture("images/untitled4.png"),
+                new Texture("images/untitled5.png"),
+                new Texture("images/untitled6.png"),
+        };
 
-    public void update(float dt) {
-        position.add(0,0,0);
+        texture = textures[(int)(Math.random() * textures.length)];
+
+        position = new Vector3(x, y,0);
     }
 
     public void moveTile() {
@@ -22,10 +34,11 @@ public class Map {
     }
 
     public Texture getTileTexture() {
-        return tileTexture;
+        return texture;
     }
 
     public Vector3 getPosition() {
         return position;
     }
+
 }
