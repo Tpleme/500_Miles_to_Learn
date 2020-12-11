@@ -18,7 +18,7 @@ public class Map {
     }
 
     public void moveTile() {
-        position.y -= 5;
+        position.y -= 0;
     }
 
     public Texture getTileTexture() {
