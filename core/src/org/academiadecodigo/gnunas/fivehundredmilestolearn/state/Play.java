@@ -5,7 +5,10 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
-import com.badlogic.gdx.graphics.*;
+import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -107,12 +110,16 @@ public class Play extends AbstractState {
 
         questionText.draw(spriteBatch, question, 110, 45);
 
+        answerA.setColor(Color.MAGENTA);
+        answerB.setColor(Color.BLUE);
+        answerC.setColor(Color.RED);
+
         answerA.draw(spriteBatch, "A) " + option1, 110, 25);
         answerB.draw(spriteBatch, "B) " + option2, 300, 25);
         answerC.draw(spriteBatch, "C) " + option3, 500, 25);
 
-        gasText.draw(spriteBatch, "Gás: " + player.getGas(), 50, 550);
-        milesText.draw(spriteBatch, "Miles: " + player.getMiles(), 50, 530);
+        gasText.draw(spriteBatch, "Gasolina: " + player.getGas(), 50, 550);
+        milesText.draw(spriteBatch, "Milhas: " + player.getMiles(), 50, 526);
 
         spriteBatch.end();
     }
@@ -246,9 +253,9 @@ public class Play extends AbstractState {
 
     private void getNewQuestionAndAnswer() {
 
-        map.getOptionA().setY(map.getOptionA().getY() + 420);
-        map.getOptionB().setY(map.getOptionB().getY() + 420);
-        map.getOptionC().setY(map.getOptionC().getY() + 420);
+        map.getOptionA().setY(map.getOptionA().getY() + 520);
+        map.getOptionB().setY(map.getOptionB().getY() + 520);
+        map.getOptionC().setY(map.getOptionC().getY() + 520);
 
         question = getRandomQuestion();
 

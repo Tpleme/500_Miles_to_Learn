@@ -1,8 +1,6 @@
 package org.academiadecodigo.gnunas.fivehundredmilestolearn.ui;
 
 import org.academiadecodigo.gnunas.fivehundredmilestolearn.player.Player;
-import org.academiadecodigo.gnunas.fivehundredmilestolearn.state.Play;
-import org.academiadecodigo.gnunas.fivehundredmilestolearn.ui.UserInterface;
 
 public class UiManager {
 

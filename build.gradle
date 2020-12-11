@@ -92,3 +92,13 @@ project(":core") {
         
     }
 }
+
+/*jar {
+    manifest {
+        attributes "Main-Class": "org/academiadecodigo/gnunas/fivehundredmilestolearn"
+    }
+
+    from {
+        configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
+    }*/
+//}
