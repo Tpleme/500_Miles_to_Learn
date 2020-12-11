@@ -70,10 +70,13 @@ public class PlayState extends State {
         handleInput();
         backGround.moveTile();
         car.update(dt);
+        detectCollision();
+
     }
 
     @Override
     public void render(SpriteBatch spriteBatch) {
+
         spriteBatch.setProjectionMatrix(camera.combined);
 
         spriteBatch.begin();
@@ -85,6 +88,7 @@ public class PlayState extends State {
         answerB.draw(spriteBatch, "B) " + option2, 300, 25);
         answerC.draw(spriteBatch, "C) " + option3, 500, 25);
 
+        backGround.renderTextures(spriteBatch);
 
         spriteBatch.end();
     }
@@ -130,5 +134,16 @@ public class PlayState extends State {
         options.add(wrongAnswer2);
 
         return randomQuestion.getQuestion();
+    }
+
+    private void detectCollision() {
+
+/*        if (((car.getPosition().x - car.getCarTexture().getHeight()) == backGround.getSpriteA().getX()) && (backGround.getSpriteA().getY() == (car.getPosition().y - car.getCarTexture().getWidth()))) {
+            backGround.setSpeed(0f);
+        }*/
+
+        if (car.getRectangleCar().overlaps(backGround.getRectA())) {
+            backGround.setSpeed(0f);
+        }
     }
 }

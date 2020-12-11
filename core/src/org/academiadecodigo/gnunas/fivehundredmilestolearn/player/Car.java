@@ -1,28 +1,27 @@
 package org.academiadecodigo.gnunas.fivehundredmilestolearn.player;
 
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
 
 public class Car {
 
-    private static final int SPEED = 20;
     private Vector3 position;
-    private Vector3 velocity;
 
     private Texture carTexture;
+    private Sprite carSprite;
+    private Rectangle rectangleCar;
 
     public Car(int x, int y) {
         position = new Vector3(x, y, 0);
-        //velocity = new Vector3(0,0,0);
         carTexture = new Texture("Car.png");
+        carSprite = new Sprite(carTexture);
     }
 
     public void update(float dt) {
-        //velocity.add(0, 0, 0);
-        //velocity.scl(dt);
         position.add(0, 0, 0);
 
-        //velocity.scl(1/dt);
     }
 
     public Vector3 getPosition() {
@@ -35,9 +34,17 @@ public class Car {
 
     public void moveRight() {
         position.x += 135;
+        rectangleCar.x += 135;
+        rectangleCar = carSprite.getBoundingRectangle();
     }
 
     public void moveLeft() {
         position.x -= 135;
+        rectangleCar.x -= 135;
+        rectangleCar = carSprite.getBoundingRectangle();
+    }
+
+    public Rectangle getRectangleCar() {
+        return rectangleCar;
     }
 }
