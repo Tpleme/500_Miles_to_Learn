@@ -1,7 +1,6 @@
 package org.academiadecodigo.gnunas.fivehundredmilestolearn;
 
 import com.badlogic.gdx.Game;
-import org.academiadecodigo.gnunas.fivehundredmilestolearn.state.End;
 import org.academiadecodigo.gnunas.fivehundredmilestolearn.state.MainMenu;
 import org.academiadecodigo.gnunas.fivehundredmilestolearn.state.StateManager;
 

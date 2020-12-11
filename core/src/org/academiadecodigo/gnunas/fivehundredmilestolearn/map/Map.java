@@ -6,13 +6,9 @@ import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.Actor;
-import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.utils.Array;
 import org.academiadecodigo.gnunas.fivehundredmilestolearn.player.Player;
 
-import java.awt.*;
-import java.util.LinkedList;
-import java.util.List;
 
 public class Map extends Actor {
 
