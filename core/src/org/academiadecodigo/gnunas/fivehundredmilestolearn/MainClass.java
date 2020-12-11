@@ -1,39 +1,36 @@
 package org.academiadecodigo.gnunas.fivehundredmilestolearn;
 
 import com.badlogic.gdx.ApplicationAdapter;
+import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import org.academiadecodigo.gnunas.fivehundredmilestolearn.state.AbstractState;
+import org.academiadecodigo.gnunas.fivehundredmilestolearn.state.Play;
+import org.academiadecodigo.gnunas.fivehundredmilestolearn.state.StateList;
+import org.academiadecodigo.gnunas.fivehundredmilestolearn.state.StateManager;
 
-public class MainClass extends ApplicationAdapter {
+public class MainClass extends Game {
 
 	public static final int WIDTH = 800;
 	public static final int HEIGHT = 600;
 
 	public static final String title = "500 Miles to Learn";
 
-	SpriteBatch batch;
-	Texture img;
-	
 	@Override
-	public void create () {
-		batch = new SpriteBatch();
-		img = new Texture("badlogic.jpg");
+	public void create() {
+		StateManager stateManager = new StateManager();
+		stateManager.setState(new Play(this));
+		this.setScreen(stateManager.getState());
 	}
 
 	@Override
-	public void render () {
-		Gdx.gl.glClearColor(1, 0, 0, 1);
-		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-		batch.begin();
-		batch.draw(img, (WIDTH / 2) - (img.getWidth() / 2) , (HEIGHT / 2) - (img.getHeight() / 2));
-		batch.end();
+	public void dispose() {
 	}
-	
+
 	@Override
-	public void dispose () {
-		batch.dispose();
-		img.dispose();
+	public void render() {
+		super.render();
 	}
 }
