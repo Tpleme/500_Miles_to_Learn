@@ -9,11 +9,15 @@ public class MenuState extends State {
 
     private Texture background;
     private Texture playButton;
+    private Texture instructionsButton;
+    private Texture quitButton;
 
      public MenuState(GameStateManager gameStateManager) {
         super(gameStateManager);
-        background = new Texture("menu.png");
-        playButton = new Texture("PlayButton.png");
+        background = new Texture("images/menu.png");
+        playButton = new Texture("images/PlayButton.png");
+        instructionsButton = new Texture("images/InstructionsButton.png");
+        quitButton = new Texture("images/QuitButton.png");
     }
 
     @Override
@@ -33,7 +37,9 @@ public class MenuState extends State {
     public void render(SpriteBatch spriteBatch) {
         spriteBatch.begin();
         spriteBatch.draw(background, 0, 0, MainClass.WIDTH, MainClass.HEIGHT);
-        spriteBatch.draw(playButton, (MainClass.WIDTH / 2) - (playButton.getWidth() / 2) , MainClass.HEIGHT / 2);
+        spriteBatch.draw(playButton, (MainClass.WIDTH / 2) - (playButton.getWidth() / 2) + 100 , MainClass.HEIGHT / 2);
+        spriteBatch.draw(instructionsButton,(MainClass.WIDTH / 2) - (playButton.getWidth() / 2) +100 , (MainClass.HEIGHT / 2) -100);
+        spriteBatch.draw(quitButton,(MainClass.WIDTH / 2) - (playButton.getWidth() / 2) +100 , (MainClass.HEIGHT / 2) -200);
         spriteBatch.end();
     }
 

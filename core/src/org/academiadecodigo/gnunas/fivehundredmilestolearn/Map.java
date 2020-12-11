@@ -9,7 +9,7 @@ public class Map {
     private Vector3 position;
 
     public Map(int x, int y) {
-        tileTexture = new Texture("Tile.png");
+        tileTexture = new Texture("images/untitled1.png");
         position = new Vector3(x,y,0);
     }
 
