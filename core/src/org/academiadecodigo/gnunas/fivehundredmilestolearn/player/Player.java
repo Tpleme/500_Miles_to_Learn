@@ -11,7 +11,7 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 
 public class Player extends Actor {
 
-    private final float speed = 1000;
+    private final float speed = 500;
     private int gas = 30;
     private int miles = 0;
 
@@ -22,10 +22,12 @@ public class Player extends Actor {
     public Player(Texture texture, final String actorName) {
         this.actorName = actorName;
         sprite = new Sprite(texture);
+
+        sprite.setPosition((Gdx.graphics.getWidth() / 2) - (sprite.getWidth() / 2), 0);
     }
 
     private void move(float delta) {
-        sprite.translateY(delta * 10);
+        sprite.translateY(delta * 200);
 
         if(Gdx.input.isKeyPressed(Input.Keys.DPAD_LEFT)) {
             sprite.translateX(- delta * speed);

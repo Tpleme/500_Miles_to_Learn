@@ -12,6 +12,7 @@ import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.utils.viewport.FillViewport;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
@@ -38,7 +39,6 @@ public class Play extends AbstractState {
     @Override
     public void show() {
         camera = new OrthographicCamera();
-        //camera.setToOrtho(false, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 
         viewport = new FitViewport(Gdx.graphics.getWidth(), Gdx.graphics.getHeight(), camera);
         stage = new Stage(viewport);
@@ -47,8 +47,8 @@ public class Play extends AbstractState {
 
         loadAssets();
 
-        player = new Player(manager.<Texture>get("badlogic.jpg"), "Player");
-        map = new Map(manager.<Texture>get("badlogic.jpg"), "Player");
+        player = new Player(manager.<Texture>get("Car.png"), "Player");
+        map = new Map("Map", player);
 
         stage.addActor(map);
         stage.addActor(player);
@@ -58,7 +58,7 @@ public class Play extends AbstractState {
     public void render(float delta) {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
-        camera.position.set((Gdx.graphics.getWidth() / 2) - player.getSprite().getWidth(), player.getSprite().getY() + 300, 0);
+        camera.position.set((Gdx.graphics.getWidth() / 2), player.getSprite().getY() + 250, 0);
         camera.update();
 
         stage.act(delta);
@@ -92,7 +92,8 @@ public class Play extends AbstractState {
 
 
     private void loadAssets() {
-        manager.load("badlogic.jpg", Texture.class);
+        manager.load("Car.png", Texture.class);
+        manager.load("images/untitled1.png", Texture.class);
 
         manager.finishLoading();
     }

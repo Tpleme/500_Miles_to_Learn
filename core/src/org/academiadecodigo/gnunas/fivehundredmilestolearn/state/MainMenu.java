@@ -38,9 +38,9 @@ public class MainMenu extends AbstractState {
         title.setAlignment(Align.center);
         stage.addActor(title);
 
-        texture = new Texture("badlogic.jpg");
+        /*texture = new Texture("badlogic.jpg");
         backgroundImage = new Image(texture);
-        stage.addActor(backgroundImage);
+        stage.addActor(backgroundImage);*/
 
         //sound = Gdx.audio.newSound(Gdx.files.internal(""));
         //sound.loop();
