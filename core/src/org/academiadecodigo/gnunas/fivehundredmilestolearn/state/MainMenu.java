@@ -2,6 +2,7 @@ package org.academiadecodigo.gnunas.fivehundredmilestolearn.state;
 
 import com.badlogic.gdx.*;
 import com.badlogic.gdx.assets.loaders.SoundLoader;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
@@ -25,6 +26,7 @@ public class MainMenu extends AbstractState {
     private Game game;
     private SpriteBatch spriteBatch;
     private StateManager stateManager;
+    private Music entryMusic;
 
     public MainMenu(StateManager stateManager, Game game) {
         super(stateManager);
@@ -36,6 +38,7 @@ public class MainMenu extends AbstractState {
         playButton = new Texture("images/PlayButton.png");
         instructionsButton = new Texture("images/InstructionsButton.png");
         quitButton = new Texture("images/QuitButton.png");
+        entryMusic = Gdx.audio.newMusic(Gdx.files.internal("sounds/500milessmallcur.wav"));
     }
 
     @Override
@@ -46,27 +49,33 @@ public class MainMenu extends AbstractState {
     @Override
     public void render(float delta) {
 
-        if(Gdx.input.isKeyJustPressed(Input.Keys.J)){
+        if (Gdx.input.isKeyJustPressed(Input.Keys.J)) {
+            entryMusic.stop();
+            entryMusic.dispose();
             stateManager.setState(new Play(stateManager, game));
             game.setScreen(stateManager.getState());
             dispose();
         }
 
-        if(Gdx.input.isKeyJustPressed(Input.Keys.I)){
-            stateManager.setState(new InstructionMenu(stateManager, game));
+        if (Gdx.input.isKeyJustPressed(Input.Keys.I)) {
+            entryMusic.stop();
+            entryMusic.dispose();
+            stateManager.setState(new InstructionMenu(stateManager, game, entryMusic));
             game.setScreen(stateManager.getState());
             dispose();
         }
 
-        if(Gdx.input.isKeyJustPressed(Input.Keys.S)){
+        if (Gdx.input.isKeyJustPressed(Input.Keys.S)) {
             System.exit(0);
         }
 
+        entryMusic.play();
+
         spriteBatch.begin();
         spriteBatch.draw(background, 0, 0, MainClass.WIDTH, MainClass.HEIGHT);
-        spriteBatch.draw(playButton, (MainClass.WIDTH / 2) - (playButton.getWidth() / 2) + 100 , MainClass.HEIGHT / 2);
-        spriteBatch.draw(instructionsButton,(MainClass.WIDTH / 2) - (playButton.getWidth() / 2) +100 , (MainClass.HEIGHT / 2) -100);
-        spriteBatch.draw(quitButton,(MainClass.WIDTH / 2) - (playButton.getWidth() / 2) +100 , (MainClass.HEIGHT / 2) -200);
+        spriteBatch.draw(playButton, (MainClass.WIDTH / 2) - (playButton.getWidth() / 2) + 100, MainClass.HEIGHT / 2);
+        spriteBatch.draw(instructionsButton, (MainClass.WIDTH / 2) - (playButton.getWidth() / 2) + 100, (MainClass.HEIGHT / 2) - 100);
+        spriteBatch.draw(quitButton, (MainClass.WIDTH / 2) - (playButton.getWidth() / 2) + 100, (MainClass.HEIGHT / 2) - 200);
         spriteBatch.end();
     }
 

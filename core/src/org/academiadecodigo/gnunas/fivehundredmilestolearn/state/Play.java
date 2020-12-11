@@ -3,6 +3,8 @@ package org.academiadecodigo.gnunas.fivehundredmilestolearn.state;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.audio.Music;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.*;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -36,6 +38,8 @@ public class Play extends AbstractState {
     private String option3;
 
     private Texture textBackground;
+    private Music playMusic;
+    private Sound correctSound;
 
     List<String> options = new LinkedList<>();
 
@@ -59,12 +63,14 @@ public class Play extends AbstractState {
 
         generateText();
 
-
         textBackground = new Texture("images/TextBackground.png");
+        playMusic = Gdx.audio.newMusic(Gdx.files.internal("sounds/500milesbigcut.wav"));
+        correctSound = Gdx.audio.newSound(Gdx.files.internal("sounds/correctAnswer.wav"));
     }
 
     @Override
     public void show() {
+        playMusic.play();
         camera = new OrthographicCamera();
 
         viewport = new FitViewport(Gdx.graphics.getWidth(), Gdx.graphics.getHeight(), camera);
@@ -133,6 +139,7 @@ public class Play extends AbstractState {
 
     @Override
     public void dispose() {
+        playMusic.stop();
         stage.dispose();
     }
 
@@ -190,10 +197,12 @@ public class Play extends AbstractState {
 
         if (player.getCarRect().overlaps(map.getOptionARect())) {
             if (correctAnswer.equals(option1)) {
+                correctSound.play();
                 player.setGas(player.getGas() + 10);
                 getNewQuestionAndAnswer();
                 return;
             }
+
             player.setGas(player.getGas() - 10);
             getNewQuestionAndAnswer();
             return;
@@ -201,6 +210,7 @@ public class Play extends AbstractState {
 
         if (player.getCarRect().overlaps(map.getOptionBRect())) {
             if (correctAnswer.equals(option2)) {
+                correctSound.play();
                 player.setGas(player.getGas() + 10);
                 getNewQuestionAndAnswer();
                 return;
@@ -212,6 +222,7 @@ public class Play extends AbstractState {
 
         if (player.getCarRect().overlaps(map.getOptionCRect())) {
             if (correctAnswer.equals(option3)) {
+                correctSound.play();
                 player.setGas(player.getGas() + 10);
                 getNewQuestionAndAnswer();
                 return;

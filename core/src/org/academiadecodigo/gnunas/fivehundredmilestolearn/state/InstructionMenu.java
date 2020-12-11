@@ -3,6 +3,8 @@ package org.academiadecodigo.gnunas.fivehundredmilestolearn.state;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.audio.Music;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import org.academiadecodigo.gnunas.fivehundredmilestolearn.MainClass;
@@ -17,8 +19,9 @@ public class InstructionMenu extends AbstractState {
     private Texture goBackButton;
 
     private SpriteBatch spriteBatch;
+    private Music entryMusic;
 
-    public InstructionMenu(StateManager stateManager, Game game) {
+    public InstructionMenu(StateManager stateManager, Game game, Music entryMusic) {
         super(stateManager);
         this.stateManager = stateManager;
         this.game = game;
@@ -29,6 +32,7 @@ public class InstructionMenu extends AbstractState {
         instructionsMenu = new Texture("images/Instructions.png");
         playButton = new Texture("images/PlayButton.png");
         goBackButton = new Texture("images/MenuButton.png");
+        this.entryMusic = entryMusic;
     }
 
     @Override
@@ -40,12 +44,16 @@ public class InstructionMenu extends AbstractState {
     public void render(float delta) {
 
         if (Gdx.input.isKeyJustPressed(Input.Keys.J)) {
+            entryMusic.stop();
+            entryMusic.dispose();
             stateManager.setState(new Play(stateManager, game));
             game.setScreen(stateManager.getState());
             dispose();
         }
 
         if (Gdx.input.isKeyJustPressed(Input.Keys.M)) {
+            entryMusic.stop();
+            entryMusic.dispose();
             stateManager.setState(new MainMenu(stateManager, game));
             game.setScreen(stateManager.getState());
             dispose();
@@ -57,7 +65,6 @@ public class InstructionMenu extends AbstractState {
         spriteBatch.draw(playButton, 250, 50);
         spriteBatch.draw(goBackButton, 550, 50);
         spriteBatch.end();
-
     }
 
 
