@@ -2,6 +2,7 @@ package org.academiadecodigo.gnunas.fivehundredmilestolearn.state;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import org.academiadecodigo.gnunas.fivehundredmilestolearn.MainClass;
 import org.academiadecodigo.gnunas.fivehundredmilestolearn.Map;
@@ -15,6 +16,7 @@ public class PlayState extends State {
     private Car car;
     //private List<Map> backGround;
     private Map backGround;
+    private Music backgroudMusic = Gdx.audio.newMusic(Gdx.files.internal("sounds/500milesbigcut.wav"));
 
 
     public PlayState(GameStateManager gameStateManager) {
@@ -44,8 +46,8 @@ public class PlayState extends State {
     @Override
     public void render(SpriteBatch spriteBatch) {
         spriteBatch.setProjectionMatrix(camera.combined);
-
         spriteBatch.begin();
+        backgroudMusic.play();
         spriteBatch.draw(backGround.getTileTexture(), backGround.getPosition().x, backGround.getPosition().y);
         spriteBatch.draw(car.getCarTexture(), car.getPosition().x, car.getPosition().y);
         spriteBatch.end();
