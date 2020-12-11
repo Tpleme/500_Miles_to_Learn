@@ -16,7 +16,7 @@ public class Player extends Actor {
     private int miles = 0;
 
     public float speed = 120;
-    private float turningSpeed = 500;
+    private float turningSpeed = 150;
 
 
     private final Sprite sprite;
@@ -36,11 +36,11 @@ public class Player extends Actor {
     private void move(float delta) {
         sprite.translateY(delta * speed);
 
-        if(Gdx.input.isKeyPressed(Input.Keys.DPAD_LEFT) && sprite.getX() >= 200) {
-            sprite.translateX(- delta * turningSpeed);
+        if(Gdx.input.isKeyJustPressed(Input.Keys.DPAD_LEFT) && sprite.getX() >= 300) {
+            sprite.translateX(-turningSpeed);
         }
-        if(Gdx.input.isKeyPressed(Input.Keys.DPAD_RIGHT) && sprite.getX() <= Gdx.graphics.getWidth() - 260) {
-            sprite.translateX(delta * turningSpeed);
+        if(Gdx.input.isKeyJustPressed(Input.Keys.DPAD_RIGHT) && sprite.getX() <= Gdx.graphics.getWidth() - 350) {
+            sprite.translateX(turningSpeed);
         }
 
         carRect = sprite.getBoundingRectangle();
@@ -57,6 +57,7 @@ public class Player extends Actor {
     public void act(float delta) {
         super.act(delta);
         miles += (56 * delta);
+        //gas -= (0.05f * delta); //TODO: Timer
 
         move(delta);
     }

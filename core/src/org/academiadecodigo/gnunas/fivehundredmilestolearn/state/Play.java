@@ -219,6 +219,18 @@ public class Play extends AbstractState {
             player.setGas(player.getGas() - 10);
             getNewQuestionAndAnswer();
         }
+
+        if (player.getGas() <= 0) {
+            stateManager.setState(new End(stateManager, game, false));
+            game.setScreen(stateManager.getState());
+            dispose();
+        }
+
+        if (player.getGas() >= 500) {
+            stateManager.setState(new End(stateManager, game, true));
+            game.setScreen(stateManager.getState());
+            dispose();
+        }
     }
 
     private void getNewQuestionAndAnswer() {
