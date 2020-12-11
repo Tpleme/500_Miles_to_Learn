@@ -63,8 +63,49 @@ public enum Questions {
     QUESTION56("Como se escreve BANANA em inglês?", "BANANA", "ORANGE", "PEAR"),
     QUESTION57("Quantas vezes devemos escovar os dentes no mínimo?", "3", "1", "2"),
     QUESTION58("O que devemos usar para lavar o cabelo?", "Champô", "Pasta dentífrica", "Detergente"),
-    QUESTION59("O que nunca deve ser ingerido?", "Lixívia", "Refrigerante", "Café"),;
+    QUESTION59("O que nunca deve ser ingerido?", "Lixívia", "Refrigerante", "Café");
 
-    Questions(String question, String correctAnswer, String wrongAnswer1, String wrongAnswer) {
+    private String question;
+    private String correctAnswer;
+    private String wrongAnswer1;
+    private String wrongAnswer2;
+
+    Questions(String question, String correctAnswer, String wrongAnswer1, String wrongAnswer2) {
+        this.question = question;
+        this.correctAnswer = correctAnswer;
+        this.wrongAnswer1 = wrongAnswer1;
+        this.wrongAnswer2 = wrongAnswer2;
+    }
+
+    public String getQuestion() {
+        return question;
+    }
+
+    public void setQuestion(String question) {
+        this.question = question;
+    }
+
+    public String getCorrectAnswer() {
+        return correctAnswer;
+    }
+
+    public void setCorrectAnswer(String correctAnswer) {
+        this.correctAnswer = correctAnswer;
+    }
+
+    public String getWrongAnswer1() {
+        return wrongAnswer1;
+    }
+
+    public void setWrongAnswer1(String wrongAnswer1) {
+        this.wrongAnswer1 = wrongAnswer1;
+    }
+
+    public String getWrongAnswer2() {
+        return wrongAnswer2;
+    }
+
+    public void setWrongAnswer2(String wrongAnswer2) {
+        this.wrongAnswer2 = wrongAnswer2;
     }
 }
