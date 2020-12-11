@@ -25,16 +25,16 @@ public class Player extends Actor {
     }
 
     private void move(float delta) {
-        //sprite.translateY(delta * speed);
+        sprite.translateY(delta * 10);
 
-        /*if(Gdx.input.isKeyPressed(Input.Keys.DPAD_LEFT)) {
+        if(Gdx.input.isKeyPressed(Input.Keys.DPAD_LEFT)) {
             sprite.translateX(- delta * speed);
         }
         if(Gdx.input.isKeyPressed(Input.Keys.DPAD_RIGHT)) {
             sprite.translateX(delta * speed);
-        }*/
+        }
 
-        setPosition(sprite.getX(), sprite.getY());
+        //setPosition(sprite.getX(), sprite.getY());
     }
 
     @Override
@@ -47,5 +47,9 @@ public class Player extends Actor {
         super.act(delta);
 
         move(delta);
+    }
+
+    public Sprite getSprite() {
+        return sprite;
     }
 }
