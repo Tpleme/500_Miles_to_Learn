@@ -3,8 +3,9 @@ package org.academiadecodigo.gnunas.fivehundredmilestolearn;
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import org.academiadecodigo.gnunas.fivehundredmilestolearn.state.GameStateManager;
+import org.academiadecodigo.gnunas.fivehundredmilestolearn.state.MenuState;
 
 public class MainClass extends ApplicationAdapter {
 
@@ -13,27 +14,26 @@ public class MainClass extends ApplicationAdapter {
 
 	public static final String title = "500 Miles to Learn";
 
-	SpriteBatch batch;
-	Texture img;
-	
+	private GameStateManager gameStateManager;
+	private SpriteBatch batch;
+
 	@Override
 	public void create () {
 		batch = new SpriteBatch();
-		img = new Texture("badlogic.jpg");
+		gameStateManager = new GameStateManager();
+		Gdx.gl.glClearColor(1, 0, 0, 1);
+		gameStateManager.push(new MenuState(gameStateManager));
 	}
 
 	@Override
 	public void render () {
-		Gdx.gl.glClearColor(1, 0, 0, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-		batch.begin();
-		batch.draw(img, (WIDTH / 2) - (img.getWidth() / 2) , (HEIGHT / 2) - (img.getHeight() / 2));
-		batch.end();
+		gameStateManager.update(Gdx.graphics.getDeltaTime());
+		gameStateManager.render(batch);
 	}
 	
 	@Override
 	public void dispose () {
 		batch.dispose();
-		img.dispose();
 	}
 }
