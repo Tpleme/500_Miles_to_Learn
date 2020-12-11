@@ -1,6 +1,7 @@
 package org.academiadecodigo.gnunas.fivehundredmilestolearn.state;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import org.academiadecodigo.gnunas.fivehundredmilestolearn.MainClass;
@@ -22,10 +23,36 @@ public class MenuState extends State {
 
     @Override
     public void handleInput() {
-        if(Gdx.input.justTouched()) {
+
+       /* Stage stage = new Stage();
+        Gdx.input.setInputProcessor(stage);
+        Image bagImage = new Image(playButton);
+        bagImage.setSize(125, 125);
+        stage.addActor(bagImage);
+        bagImage.addListener(new ClickListener() {
+            public void clicked(InputEvent event, float x, float y){
+                Gdx.input.justTouched();
+            }
+        });*/
+
+        if(Gdx.input.isKeyJustPressed(Input.Keys.S)){
             gameStateManager.set(new PlayState(gameStateManager));
             dispose();
         }
+
+        if(Gdx.input.isKeyJustPressed(Input.Keys.I)){
+            gameStateManager.set(new InstructionsState(gameStateManager));
+            dispose();
+        }
+
+        if(Gdx.input.isKeyJustPressed(Input.Keys.Q)){
+            System.exit(0);
+        }
+
+        /*if(Gdx.input.justTouched()) {
+            gameStateManager.set(new PlayState(gameStateManager));
+            dispose();
+        }*/
     }
 
     @Override
