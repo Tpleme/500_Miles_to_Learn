@@ -7,5 +7,9 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 public abstract class AbstractState implements Screen {
 
+    protected StateManager stateManager;
 
+    public AbstractState(StateManager stateManager) {
+        this.stateManager = stateManager;
+    }
 }

@@ -2,6 +2,10 @@ package org.academiadecodigo.gnunas.fivehundredmilestolearn.state;
 
 public class End extends AbstractState {
 
+    public End(StateManager stateManager) {
+        super(stateManager);
+    }
+
     @Override
     public void show() {
 

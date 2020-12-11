@@ -1,7 +1,7 @@
 package org.academiadecodigo.gnunas.fivehundredmilestolearn;
 
 import com.badlogic.gdx.Game;
-import org.academiadecodigo.gnunas.fivehundredmilestolearn.state.Play;
+import org.academiadecodigo.gnunas.fivehundredmilestolearn.state.MainMenu;
 import org.academiadecodigo.gnunas.fivehundredmilestolearn.state.StateManager;
 
 public class MainClass extends Game {
@@ -14,7 +14,7 @@ public class MainClass extends Game {
 	@Override
 	public void create() {
 		StateManager stateManager = new StateManager();
-		stateManager.setState(new Play(this));
+		stateManager.setState(new MainMenu(stateManager, this));
 		this.setScreen(stateManager.getState());
 	}
 

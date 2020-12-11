@@ -1,8 +1,6 @@
 package org.academiadecodigo.gnunas.fivehundredmilestolearn.state;
 
-import com.badlogic.gdx.ApplicationAdapter;
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.*;
 import com.badlogic.gdx.assets.loaders.SoundLoader;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Color;
@@ -16,34 +14,28 @@ import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
+import org.academiadecodigo.gnunas.fivehundredmilestolearn.MainClass;
 
 public class MainMenu extends AbstractState {
 
-    private Texture texture;
-    private Image backgroundImage;
-    private Sound sound;
+    private Texture background;
+    private Texture playButton;
+    private Texture instructionsButton;
+    private Texture quitButton;
+    private Game game;
+    private SpriteBatch spriteBatch;
+    private StateManager stateManager;
 
-    private final Stage stage;
+    public MainMenu(StateManager stateManager, Game game) {
+        super(stateManager);
+        this.stateManager = stateManager;
+        this.game = game;
 
-    public MainMenu() {
-        stage = new Stage(new ScreenViewport());
-
-        Label.LabelStyle titleStyle = new Label.LabelStyle();
-        BitmapFont bitmapFont = new BitmapFont(Gdx.files.internal("fonts/Arial.fnt"));
-        titleStyle.font = bitmapFont;
-        titleStyle.fontColor = Color.BLACK;
-
-        Label title = new Label("Main Menu", titleStyle);
-        title.setPosition((Gdx.graphics.getWidth() / 2) - title.getFontScaleX(), (Gdx.graphics.getHeight() / 2) - title.getFontScaleY());
-        title.setAlignment(Align.center);
-        stage.addActor(title);
-
-        /*texture = new Texture("badlogic.jpg");
-        backgroundImage = new Image(texture);
-        stage.addActor(backgroundImage);*/
-
-        //sound = Gdx.audio.newSound(Gdx.files.internal(""));
-        //sound.loop();
+        spriteBatch = new SpriteBatch();
+        background = new Texture("images/menu.png");
+        playButton = new Texture("images/PlayButton.png");
+        instructionsButton = new Texture("images/InstructionsButton.png");
+        quitButton = new Texture("images/QuitButton.png");
     }
 
     @Override
@@ -53,12 +45,29 @@ public class MainMenu extends AbstractState {
 
     @Override
     public void render(float delta) {
-        // TODO: Verify User Input to choose menu option
 
-        Gdx.gl.glClearColor(1,1,1,1);
-        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-        stage.act();
-        stage.draw();
+        if(Gdx.input.isKeyJustPressed(Input.Keys.J)){
+            stateManager.setState(new Play(stateManager, game));
+            game.setScreen(stateManager.getState());
+            dispose();
+        }
+
+        if(Gdx.input.isKeyJustPressed(Input.Keys.I)){
+            stateManager.setState(new InstructionMenu(stateManager, game));
+            game.setScreen(stateManager.getState());
+            dispose();
+        }
+
+        if(Gdx.input.isKeyJustPressed(Input.Keys.S)){
+            System.exit(0);
+        }
+
+        spriteBatch.begin();
+        spriteBatch.draw(background, 0, 0, MainClass.WIDTH, MainClass.HEIGHT);
+        spriteBatch.draw(playButton, (MainClass.WIDTH / 2) - (playButton.getWidth() / 2) + 100 , MainClass.HEIGHT / 2);
+        spriteBatch.draw(instructionsButton,(MainClass.WIDTH / 2) - (playButton.getWidth() / 2) +100 , (MainClass.HEIGHT / 2) -100);
+        spriteBatch.draw(quitButton,(MainClass.WIDTH / 2) - (playButton.getWidth() / 2) +100 , (MainClass.HEIGHT / 2) -200);
+        spriteBatch.end();
     }
 
     @Override
@@ -83,7 +92,9 @@ public class MainMenu extends AbstractState {
 
     @Override
     public void dispose() {
-        texture.dispose();
-        stage.dispose();
+        background.dispose();
+        playButton.dispose();
+        instructionsButton.dispose();
+        quitButton.dispose();
     }
 }
