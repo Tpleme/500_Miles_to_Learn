@@ -1,6 +1,6 @@
 # hackathon Dec-2020
 
-500 Miles to learn is the project of our hackathon challenge made within 24 hours.
+500 Miles to learn is the winning project of our hackathon challenge made within 24 hours.
 
 The theme for our project was the music "The Proclaimers - I'm Gonna Be (500 miles)", and with that our initial idea was to create a game that somehow has a purpose and with that we decided to create a children's education game.
 
