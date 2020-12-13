@@ -1,6 +1,5 @@
 package org.academiadecodigo.gnunas.fivehundredmilestolearn.state;
 
-import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
@@ -17,7 +16,6 @@ public class MainMenu extends AbstractState {
     private Game game;
     private SpriteBatch spriteBatch;
     private StateManager stateManager;
-    private Music entryMusic;
 
     public MainMenu(StateManager stateManager, Game game) {
         super(stateManager);
@@ -29,7 +27,7 @@ public class MainMenu extends AbstractState {
         playButton = new Texture("images/PlayButton.png");
         instructionsButton = new Texture("images/InstructionsButton.png");
         quitButton = new Texture("images/QuitButton.png");
-        entryMusic = Gdx.audio.newMusic(Gdx.files.internal("sounds/500milessmallcur.wav"));
+
     }
 
     @Override
@@ -41,17 +39,17 @@ public class MainMenu extends AbstractState {
     public void render(float delta) {
 
         if (Gdx.input.isKeyJustPressed(Input.Keys.J)) {
-            entryMusic.stop();
-            entryMusic.dispose();
+            MainClass.buttonClick.play();
+            MainClass.MainMenuMusic.stop();
+            MainClass.MainMenuMusic.dispose();
             stateManager.setState(new Play(stateManager, game));
             game.setScreen(stateManager.getState());
             dispose();
         }
 
         if (Gdx.input.isKeyJustPressed(Input.Keys.I)) {
-            entryMusic.stop();
-            entryMusic.dispose();
-            stateManager.setState(new InstructionMenu(stateManager, game, entryMusic));
+            MainClass.buttonClick.play();
+            stateManager.setState(new InstructionMenu(stateManager, game));
             game.setScreen(stateManager.getState());
             dispose();
         }
@@ -59,8 +57,6 @@ public class MainMenu extends AbstractState {
         if(Gdx.input.isKeyJustPressed(Input.Keys.S)){
             Gdx.app.exit();
         }
-
-        entryMusic.play();
 
         spriteBatch.begin();
         spriteBatch.draw(background, 0, 0, MainClass.WIDTH, MainClass.HEIGHT);

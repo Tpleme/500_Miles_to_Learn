@@ -43,6 +43,7 @@ public class Play extends AbstractState {
     private Texture textBackground;
     private Music playMusic;
     private Sound correctSound;
+    private Sound wrongSound;
 
     List<String> options = new LinkedList<>();
 
@@ -69,6 +70,7 @@ public class Play extends AbstractState {
         textBackground = new Texture("images/TextBackground.png");
         playMusic = Gdx.audio.newMusic(Gdx.files.internal("sounds/500milesbigcut.wav"));
         correctSound = Gdx.audio.newSound(Gdx.files.internal("sounds/correctAnswer.wav"));
+        wrongSound = Gdx.audio.newSound(Gdx.files.internal("sounds/wrongAnswer.wav"));
     }
 
     @Override
@@ -118,8 +120,8 @@ public class Play extends AbstractState {
         answerB.draw(spriteBatch, "B) " + option2, 300, 25);
         answerC.draw(spriteBatch, "C) " + option3, 500, 25);
 
-        gasText.draw(spriteBatch, "Gasolina: " + player.getGas(), 50, 550);
-        milesText.draw(spriteBatch, "Milhas: " + player.getMiles(), 50, 526);
+        gasText.draw(spriteBatch, "Gasolina: " + (int) player.getGas(), 50, 550);
+        milesText.draw(spriteBatch, "Milhas: " + (int) player.getMiles(), 50, 526);
 
         spriteBatch.end();
     }
@@ -209,8 +211,7 @@ public class Play extends AbstractState {
                 getNewQuestionAndAnswer();
                 return;
             }
-
-            player.setGas(player.getGas() - 10);
+            wrongSound.play();
             getNewQuestionAndAnswer();
             return;
         }
@@ -222,7 +223,7 @@ public class Play extends AbstractState {
                 getNewQuestionAndAnswer();
                 return;
             }
-            player.setGas(player.getGas() - 10);
+            wrongSound.play();
             getNewQuestionAndAnswer();
             return;
         }
@@ -234,7 +235,7 @@ public class Play extends AbstractState {
                 getNewQuestionAndAnswer();
                 return;
             }
-            player.setGas(player.getGas() - 10);
+            wrongSound.play();
             getNewQuestionAndAnswer();
         }
 
@@ -253,9 +254,9 @@ public class Play extends AbstractState {
 
     private void getNewQuestionAndAnswer() {
 
-        map.getOptionA().setY(map.getOptionA().getY() + 520);
-        map.getOptionB().setY(map.getOptionB().getY() + 520);
-        map.getOptionC().setY(map.getOptionC().getY() + 520);
+        map.getOptionA().setY(map.getOptionA().getY() + 720);
+        map.getOptionB().setY(map.getOptionB().getY() + 720);
+        map.getOptionC().setY(map.getOptionC().getY() + 720);
 
         question = getRandomQuestion();
 

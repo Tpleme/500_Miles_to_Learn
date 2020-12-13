@@ -11,12 +11,14 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 public class Player extends Actor {
 
 
-    private int gas = 30;
-    private int miles = 0;
+    private double gas = 50;
+    private double miles = 0;
 
     public float speed = 120;
     private float turningSpeed = 150;
 
+    private float timeSeconds = 0f;
+    private float period = 1f;
 
     private final Sprite sprite;
     private Rectangle carRect;
@@ -43,8 +45,6 @@ public class Player extends Actor {
         }
 
         carRect = sprite.getBoundingRectangle();
-
-        //setPosition(sprite.getX(), sprite.getY());
     }
 
     @Override
@@ -55,8 +55,13 @@ public class Player extends Actor {
     @Override
     public void act(float delta) {
         super.act(delta);
-        miles += (56 * delta);
-        //gas -= (0.05f * delta); //TODO: Timer
+
+        timeSeconds += Gdx.graphics.getDeltaTime();
+        if(timeSeconds > period){
+            timeSeconds -= period;
+            gas --;
+            miles += 2.5;
+        }
 
         move(delta);
     }
@@ -69,19 +74,19 @@ public class Player extends Actor {
         return sprite;
     }
 
-    public int getGas() {
+    public double getGas() {
         return gas;
     }
 
-    public void setGas(int gas) {
+    public void setGas(double gas) {
         this.gas = gas;
     }
 
-    public void setMiles(int miles) {
+    public void setMiles(double miles) {
         this.miles = miles;
     }
 
-    public int getMiles() {
+    public double getMiles() {
         return miles;
     }
 }
